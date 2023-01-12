@@ -73,6 +73,7 @@ for i in range(len(file_names)):
     df1.update(df1)
     df2.update(df2)
     filter = [
+        "Name",
         "Method",
         "Condition",
         "TriggerNode",

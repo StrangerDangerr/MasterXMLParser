@@ -24,12 +24,14 @@ for dirName, subdirList, fileList in os.walk(rootDir):
 # Compare the file names
 for i in range(len(file_names)):
     for j in range(i + 1, len(file_names)):
+
         f1name = file_names[i]
-        f1name = f1name[:-12]
+        f1name = f1name[:25]
         f2name = file_names[j]
-        f2name = f2name[:-12]
+        f2name = f2name[:25]
+        # if file_names[i][:26] == file_names[j]:
         if f1name == f2name:
-            print("Process Started for %s" % f1name)
+            print("Process Started for %s" % file_names[i])
             # maintain dir here also
             f1 = r"C:\Users\MR\Documents\KSB\6875\XML\%s" % file_names[i]
             f2 = r"C:\Users\MR\Documents\KSB\6875\XML\%s" % file_names[j]
@@ -55,6 +57,9 @@ for i in range(len(file_names)):
                 row += 1
                 for child in element:
                     row = process_element(child, row, level + 1)
+                    row += 1
+                    for grandchild in child:
+                        row = process_element(grandchild, row, level + 1)
                 return row
 
             # start processing at the root element
